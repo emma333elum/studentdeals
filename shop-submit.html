@@ -1,1 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Submit Your Shop | StudentDeals</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F4F0E6;
+  color: #292B26;
+  font-family: 'DM Sans', sans-serif;
+}
+
+header {
+  background: #123D2A;
+  padding: 22px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #F4F0E6;
+  font: 700 25px 'Playfair Display', serif;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #D66A38;
+}
+
+header a:last-child {
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 650px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.card {
+  background: #FFFDF8;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.tag {
+  color: #D66A38;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font: 700 34px 'Playfair Display', serif;
+  color: #123D2A;
+  margin-bottom: 12px;
+}
+
+.description {
+  color: #777;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  margin: 18px 0 8px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #DEDCD2;
+  border-radius: 7px;
+  background: #F4F0E6;
+  font: inherit;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #123D2A;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  margin-top: 25px;
+  border: none;
+  border-radius: 7px;
+  background: #123D2A;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #D66A38;
+}
+
+#status {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+  font-size: 12px;
+}
+
+@media(max-width: 500px) {
+  .card {
+    padding: 25px 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="logo">studentdeals<span>.</span></a>
+  <a href="index.html">← Home</a>
+</header>
+
+<main class="container">
+<div class="card">
+
+<p class="tag">PARTNER WITH US</p>
+
+<h1>List your business.</h1>
+
+<p class="description">
+Reach more students around FUNAAB.
+Submit your business and discount offer
+for verification by the StudentDeals team.
+</p>
+
+<form id="shop-form">
+
+<label>Business Name</label>
+<input type="text" id="shopName" placeholder="Enter business name" required>
+
+<label>Owner's Email</label>
+<input type="email" id="ownerEmail" placeholder="Business email" required>
+
+<label>Phone Number</label>
+<input type="tel" id="phone" placeholder="Business contact number" required>
+
+<label>Business Category</label>
+<select id="category" required>
+<option value="">Select category</option>
+<option>Food & Restaurants</option>
+<option>Groceries</option>
+<option>Fashion</option>
+<option>Books & Stationery</option>
+<option>Technology</option>
+<option>Beauty & Personal Care</option>
+<option>Other</option>
+</select>
+
+<label>Shop Location</label>
+<input type="text" id="location" placeholder="e.g. Near FUNAAB Gate" required>
+
+<label>Discount Offered</label>
+<input type="text" id="discount" placeholder="e.g. 10% off for students" required>
+
+<label>Offer Description</label>
+<textarea id="description" placeholder="Explain what students get and how to claim the offer" required></textarea>
+
+<label>Offer Expiry Date</label>
+<input type="date" id="expiry" required>
+
+<button type="submit">Submit Business for Review →</button>
+
+<p id="status"></p>
+
+</form>
+</div>
+</main>
+
+<footer>
+© 2026 StudentDeals. Campus Market Journal.
+</footer>
+
+<script>
+document.getElementById("shop-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const submission = {
+    shopName: document.getElementById("shopName").value,
+    ownerEmail: document.getElementById("ownerEmail").value,
+    phone: document.getElementById("phone").value,
+    category: document.getElementById("category").value,
+    location: document.getElementById("location").value,
+    discount: document.getElementById("discount").value,
+    description: document.getElementById("description").value,
+    expiry: document.getElementById("expiry").value,
+    status: "Pending"
+  };
+
+  const submissions = JSON.parse(
+    localStorage.getItem("studentDealsSubmissions") || "[]"
+  );
+
+  submissions.push(submission);
+
+  localStorage.setItem(
+    "studentDealsSubmissions",
+    JSON.stringify(submissions)
+  );
+
+  document.getElementById("status").textContent =
+    "Submission saved on this device! Database connection is not yet configured.";
+
+  document.getElementById("shop-form").reset();
+});
+</script>
+
+</body>
+  </html>
