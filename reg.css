@@ -1,0 +1,160 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6ef;
+    color: #17251b;
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: white;
+    padding: 38px;
+    border-radius: 18px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.07);
+}
+
+.logo {
+    display: inline-block;
+    color: #176b38;
+    font-size: 27px;
+    font-weight: 800;
+    text-decoration: none;
+    margin-bottom: 35px;
+}
+
+.logo span {
+    color: #d6a52c;
+}
+
+.eyebrow {
+    color: #b18a24;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 29px;
+    margin-bottom: 12px;
+}
+
+.auth-description {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dedede;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: #176b38;
+    box-shadow: 0 0 0 3px rgba(23,107,56,0.08);
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 65px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 13px;
+    background: none;
+    border: none;
+    color: #176b38;
+    cursor: pointer;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 16px;
+    background: #176b38;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-button:hover {
+    background: #10542b;
+}
+
+.form-message {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.auth-switch {
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    margin-top: 27px;
+}
+
+.auth-switch a,
+.back-link {
+    color: #176b38;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 27px 22px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+}
