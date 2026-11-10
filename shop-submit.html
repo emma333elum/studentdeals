@@ -213,37 +213,58 @@ for verification by the StudentDeals team.
 </footer>
 
 <script>
-document.getElementById("shop-form").addEventListener("submit", function(e) {
+<script type="module">
+
+import { createClient } from
+'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+const SUPABASE_URL = "YOUR_PROJECT_URL";
+const SUPABASE_KEY = "YOUR_PUBLISHABLE_KEY";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const form = document.getElementById("shop-form");
+const status = document.getElementById("status");
+
+form.addEventListener("submit", async function(e) {
+
   e.preventDefault();
 
+  status.textContent = "Submitting your offer...";
+
   const submission = {
-    shopName: document.getElementById("shopName").value,
-    ownerEmail: document.getElementById("ownerEmail").value,
-    phone: document.getElementById("phone").value,
+    shop_name: document.getElementById("shopName").value.trim(),
+    owner_email: document.getElementById("ownerEmail").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
     category: document.getElementById("category").value,
-    location: document.getElementById("location").value,
-    discount: document.getElementById("discount").value,
-    description: document.getElementById("description").value,
+    location: document.getElementById("location").value.trim(),
+    discount: document.getElementById("discount").value.trim(),
+    description: document.getElementById("description").value.trim(),
     expiry: document.getElementById("expiry").value,
     status: "Pending"
   };
 
-  const submissions = JSON.parse(
-    localStorage.getItem("studentDealsSubmissions") || "[]"
-  );
+  const { error } = await supabase
+    .from("submissions")
+    .insert([submission]);
 
-  submissions.push(submission);
+  if (error) {
+    status.textContent = "Submission failed: " + error.message;
+    return;
+  }
 
-  localStorage.setItem(
-    "studentDealsSubmissions",
-    JSON.stringify(submissions)
-  );
+  status.textContent =
+    "Success! Your offer has been submitted for verification.";
 
-  document.getElementById("status").textContent =
-    "Submission saved on this device! Database connection is not yet configured.";
+  form.reset();
 
-  document.getElementById("shop-form").reset();
 });
+
+</script>
+ 
 </script>
 
 </body>
