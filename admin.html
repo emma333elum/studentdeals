@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudentDeals | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>Student<span>Deals.</span></h2>
+    <p class="side-label">MANAGEMENT</p>
+    <a href="index.html">← Back to marketplace</a>
+    <a href="#overview" class="active">Dashboard</a>
+    <a href="#submissions">Submissions</a>
+    <p class="side-note">FUNAAB CAMPUS MARKETPLACE</p>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">STUDENTDEALS / ADMINISTRATION</p>
+        <h1>Control Room.</h1>
+        <p>Manage business offers and student discounts.</p>
+      </div>
+      <button id="logoutBtn">Log out</button>
+    </header>
+
+    <section id="overview" class="stats">
+      <article class="stat-card">
+        <p>Total submissions</p>
+        <h2 id="totalCount">0</h2>
+      </article>
+
+      <article class="stat-card">
+        <p>Pending review</p>
+        <h2 id="pendingCount">0</h2>
+      </article>
+
+      <article class="stat-card">
+        <p>Approved offers</p>
+        <h2 id="approvedCount">0</h2>
+      </article>
+
+      <article class="stat-card">
+        <p>Rejected offers</p>
+        <h2 id="rejectedCount">0</h2>
+      </article>
+    </section>
+
+    <section id="submissions" class="submissions">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">BUSINESS MANAGEMENT</p>
+          <h2>Offer submissions</h2>
+        </div>
+
+        <select id="statusFilter">
+          <option value="All">All offers</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+
+      <div id="submissionList">
+        <p class="empty-message">Loading submissions...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
