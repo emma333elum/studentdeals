@@ -17,7 +17,7 @@ async function checkAdmin() {
 
   if (error || !user) {
     alert("Please log in first.");
-    window.location.href = "login.html";
+    window.location.href = "admin-login.html";
     return false;
   }
 
