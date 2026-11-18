@@ -160,7 +160,7 @@ statusFilter.addEventListener("change", displaySubmissions);
 document.getElementById("logoutBtn").addEventListener("click",
   async () => {
     await supabase.auth.signOut();
-    window.location.href = "login.html";
+    window.location.href = "admin-login.html";
   }
 );
 
