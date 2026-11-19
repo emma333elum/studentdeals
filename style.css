@@ -817,3 +817,59 @@ footer {
 }
 
 }
+
+.live-deals {
+    padding: 60px 7%;
+    background: #f8fafc;
+}
+
+.live-label {
+    color: #16a34a;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.deals-heading h2 {
+    font-size: 30px;
+    margin: 12px 0;
+}
+
+.deals-heading p {
+    color: #64748b;
+}
+
+.discount-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.discount-card {
+    background: white;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+
+.discount-card h3 {
+    margin-bottom: 10px;
+}
+
+.discount-amount {
+    color: #16a34a;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.discount-card button {
+    width: 100%;
+    padding: 12px;
+    background: #166534;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+}
