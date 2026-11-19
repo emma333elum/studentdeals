@@ -267,3 +267,62 @@ categoryButtons.forEach(button => {
     });
 
 });
+
+async function loadLiveDiscounts() {
+    const container = document.getElementById("discount-container");
+
+    const { data, error } = await supabase
+        .from("submissions")
+        .select("id, shop_name, category, location, discount, description, expiry")
+        .eq("status", "Approved")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        container.innerHTML = "<p>Unable to load discounts.</p>";
+        console.error(error);
+        return;
+    }
+
+    const activeDeals = data.filter(deal =>
+        !deal.expiry || new Date(deal.expiry) >= new Date()
+    );
+
+    if (activeDeals.length === 0) {
+        container.innerHTML = "<p>No active discounts available yet.</p>";
+        return;
+    }
+
+    container.innerHTML = activeDeals.map(deal => `
+        <div class="discount-card">
+            <span style="color:green;font-size:12px;">
+                ● LIVE OFFER
+            </span>
+
+            <h3>${escapeHTML(deal.shop_name)}</h3>
+
+            <div class="discount-amount">
+                ${escapeHTML(deal.discount || "Special Deal")}
+            </div>
+
+            <p>${escapeHTML(deal.description || "")}</p>
+
+            <p>📍 ${escapeHTML(deal.location || "Location unavailable")}</p>
+
+            <p>Category: ${escapeHTML(deal.category || "General")}</p>
+
+            <p>Expires: ${deal.expiry || "Not specified"}</p>
+        </div>
+    `).join("");
+}
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+loadLiveDiscounts();
